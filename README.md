@@ -4,9 +4,7 @@ simple package manager for command line applications
 # how to use
 
 open
-
 this command will open the xbin folder in the finder.
-
 example: xbin open
 
 -ls
