@@ -5,7 +5,7 @@ simple package manager for command line applications
 
 open: this command will open the xbin folder in the finder, example: xbin open
 
--ls: the list command returns a list of all installed applications in xbin, example: xbin -ls
+- -ls: the list command returns a list of all installed applications in xbin, example: xbin -ls
 
 -l: load will moves the desired application into xbin, example: xbin -l myprogram
 
