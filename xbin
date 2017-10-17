@@ -1,5 +1,5 @@
 #!/bin/bash
-#v1.3
+#v1.4
 #open function:
 	if [ "$1" = "open" ]; then
 		open ~/.xbin
@@ -12,14 +12,24 @@
 		if [ -e ~/.xbin/$2 ]; then
 			echo ":: xbin: error"
 		else
-			sudo mv $2 ~/.xbin/$2
-			echo ":: xbin: $2 loaded"
+			path=`pwd`
+			sudo mv $path/$2 ~/.xbin/$2
+			if [ -e ~/.xbin/$2 ]; then
+				echo ":: xbin: $2 loaded"
+			else
+				echo ":: xbin: error"
+			fi
 		fi
 #remove function:
 	elif [ "$1" = "-r" ]; then
 		if [ -e ~/.xbin/$2 ]; then
-			sudo mv ~/.xbin/$2 ~/$2
-			echo ":: xbin: $2 removed"
+			path=`pwd`
+			sudo mv ~/.xbin/$2 $path/$2
+			if [ -e $path/$2 ]; then
+				echo ":: xbin: $2 removed"
+			else
+				echo ":: xbin: error"
+			fi
 		else
 			echo ":: xbin: error"
 		fi
@@ -33,10 +43,15 @@
 		fi
 #convert function:
 	elif [ "$1" = "-c" ]; then
+		path=`pwd`
 		file_name=$(echo $2 | cut -f 1 -d '.')
-		sudo cp ~/$2 ~/$file_name
-		sudo chmod +x ~/$file_name
-		echo ":: xbin: $file_name converted"
+		sudo cp $path/$2 $path/$file_name
+		sudo chmod +x $path/$file_name
+		if [ -e $path/$file_name ]; then
+			echo ":: xbin: $file_name converted"
+		else
+			echo ":: xbin: error"
+		fi
 #help function:
 	elif [ "$1" = "help" ]; then
 		echo ":: xbin: help:"
